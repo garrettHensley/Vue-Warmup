@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Product App</title>
+  </head>
+  <body>
+    <div class="nav-bar"></div>
+    <div id="app">
+      <div class="product-image">
+        <img :src="product.image" />
+      </div>
+      <div class="product-info">
+        <h1><a :href="product.link" target="_blank">{{ product.name }}</a></h1>
+        <p v-if="product.inventory > 10">In Stock</p>
+        <p v-else-if="product.inventory <= 10 && product.inventory > 0">
+          Only <em>{{product.inventory}} left!</em>
+        </p>
+        <p v-else>Out of Stock</p>
+        <ul>
+          <li v-for="detail in product.details"> {{ detail }} </li>
+        </ul>
+        <div v-for="variant in product.variants" :key="variant.variantId">
+          <p>{{ variant.variantColor}}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
